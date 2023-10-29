@@ -2,6 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
 import ListUsers from "../ListUser";
+import debounce from "../../helper/debounce";
+
+const BASE_URL = 'https://api.github.com/search/users?';
 
 function UserSearch() {
   const [data, setData] = useState();
@@ -10,33 +13,49 @@ function UserSearch() {
   const [perPage, setPerPage] = useState(10);
   const [q, setQ] = useState("");
 
+  const debouncedSearch = useCallback(
+    debounce((searchQuery) => {
+      if (searchQuery !== "") {
+        fetchUsers(1, searchQuery);
+      } else {
+        setData([]);
+        setLoading(false);
+      }
+    }, 500), 
+    []
+  );
+
   const fetchUsers = useCallback(
-    async (page) => {
+    async (page, searchQuery) => {
       setLoading(true);
-      const response = await axios.get(
-        `https://api.github.com/search/users?q=${q}&page=${page}&per_page=${perPage}&sort=followers`,
-      ).catch(err=>{
-        console.log(err);
-      });
+      const response = await axios
+        .get(
+          `${BASE_URL}q=${searchQuery}&page=${page}&per_page=${perPage}&sort=followers`
+        )
+        .catch((err) => {
+          console.log(err);
+        });
 
       setData(response?.data);
       setTotalRows(response?.data?.total_count);
       setLoading(false);
     },
-    [perPage, q]
+    [perPage]
   );
 
   const handlePageChange = (page) => {
-    fetchUsers(page);
+    fetchUsers(page, q);
   };
 
   const handlePerRowsChange = async (newPerPage, page) => {
     setLoading(true);
-    const response = await axios.get(
-      `https://api.github.com/search/users?q=${q}&page=${page}&per_page=${newPerPage}`,
-    ).catch(err=>{
-      console.log(err);
-    });
+    const response = await axios
+      .get(
+        `${BASE_URL}q=${q}&page=${page}&per_page=${newPerPage}`
+      )
+      .catch((err) => {
+        console.log(err);
+      });
 
     setData(response?.data);
     setPerPage(newPerPage);
@@ -44,13 +63,8 @@ function UserSearch() {
   };
 
   useEffect(() => {
-    if (q !== "") {
-      fetchUsers(1);
-    } else {
-      setData([]);
-      setLoading(false);
-    }
-  }, [q, fetchUsers]);
+    debouncedSearch(q);
+  }, [q, debouncedSearch]);
 
   return (
     <section>
@@ -75,3 +89,4 @@ function UserSearch() {
 }
 
 export default UserSearch;
+

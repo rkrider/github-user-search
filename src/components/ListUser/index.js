@@ -37,6 +37,8 @@ function ListUsers({
       data={data}
       pagination
       responsive
+      highlightOnHover
+      noDataComponent={<h3>No search results found.</h3>}
       paginationServer
       paginationTotalRows={paginationTotalRows}
       onChangeRowsPerPage={onChangeRowsPerPage}
