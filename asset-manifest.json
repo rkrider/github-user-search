@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.4df77467.css",
-    "main.js": "/react-gh-pages/static/js/main.686916d3.js",
-    "static/js/787.b7d4d1ca.chunk.js": "/react-gh-pages/static/js/787.b7d4d1ca.chunk.js",
-    "index.html": "/react-gh-pages/index.html",
-    "main.4df77467.css.map": "/react-gh-pages/static/css/main.4df77467.css.map",
-    "main.686916d3.js.map": "/react-gh-pages/static/js/main.686916d3.js.map",
-    "787.b7d4d1ca.chunk.js.map": "/react-gh-pages/static/js/787.b7d4d1ca.chunk.js.map"
+    "main.css": "/github-user-search/static/css/main.4df77467.css",
+    "main.js": "/github-user-search/static/js/main.8a774115.js",
+    "static/js/787.b7d4d1ca.chunk.js": "/github-user-search/static/js/787.b7d4d1ca.chunk.js",
+    "index.html": "/github-user-search/index.html",
+    "main.4df77467.css.map": "/github-user-search/static/css/main.4df77467.css.map",
+    "main.8a774115.js.map": "/github-user-search/static/js/main.8a774115.js.map",
+    "787.b7d4d1ca.chunk.js.map": "/github-user-search/static/js/787.b7d4d1ca.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4df77467.css",
-    "static/js/main.686916d3.js"
+    "static/js/main.8a774115.js"
   ]
 }
