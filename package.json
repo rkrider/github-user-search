@@ -1,7 +1,7 @@
 {
   "name": "github-user-search",
   "version": "0.1.0",
-  "homepage": "https://gitname.github.io/github-user-search",
+  "homepage": "https://rkrider.github.io/github-user-search",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
